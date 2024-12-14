@@ -19,6 +19,11 @@ export const presetColours = {
     saturation: 100,
     color_temp: 0
   },
+  reset_color: {
+    hue: 100,
+    saturation: 100,
+    color_temp: 0
+  },
   white: {
     color_temp: 4500
   },
