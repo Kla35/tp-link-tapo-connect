@@ -19,6 +19,21 @@ export const presetColours = {
     saturation: 100,
     color_temp: 0
   },
+  kla: {
+    hue: 340,
+    saturation: 82,
+    color_temp: 0
+  },
+  lala: {
+    hue: 275,
+    saturation: 99,
+    color_temp: 0
+  },
+  gloril: {
+    hue: 32,
+    saturation: 100,
+    color_temp: 0
+  },
   white_salon: {
     hue: 0,
     saturation: 0,
