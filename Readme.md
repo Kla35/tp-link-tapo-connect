@@ -4,6 +4,7 @@ Unofficial Node.js library for connecting to TP-Link Tapo devices. Currently lim
 - P100, P105, P110, P115 smart plugs
 - L510E, L530E smart bulbs
 - L900-10 smart strip
+- P300 smart plug strip
 - IP cameras like C320WS
 
 ## Installation Instructions
@@ -89,9 +90,34 @@ const device = await loginDeviceByIp(email, password, deviceIp);
 await device.turnOn();
 ```
 
+### Cloud passthrough
+
+It is now possible to turn on & off devices using the cloud api (Doesn't require to be on the same network as the device). This functionality is limited at this time and only seems to work for older Kasa (HS100) devices.
+```ts
+const cloudApi = await cloudLogin(email, password);
+    
+const devices = await cloudApi.listDevicesByType('IOT.SMARTPLUGSWITCH');
+
+const cloudDevice = cloudApi.getTapoDevice(devices[0]);
+await cloudDevice.turnOn();
+```
+
+### Tapo Hub device
+
+Support for the Tapo Hub (H100) is now availaible and can be accessed as follows:
+```ts
+const device = await loginDeviceByIp(email, password, deviceIp);
+await device.playAlarm(AlarmTone.DoorbellRing8, AlarmVolume.high);
+
+const hubDevices = await device.getHubDevices();
+const hubDeviceId = hubDevices[0].deviceId;
+const eventLogs = await device.getEventLogs(hubDeviceId);
+```
+
 ### Credits
 
 Credit to this API go to:
 * https://github.com/fishbigger/TapoP100
 * https://github.com/K4CZP3R/tapo-p100-java-poc
 * https://gist.github.com/chriswheeldon/3b17d974db3817613c69191c0480fe55
+* https://github.com/petretiandrea/plugp100
